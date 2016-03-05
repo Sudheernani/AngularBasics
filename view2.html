@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <script data-require="angular.js@2.0.0" data-semver="1.3.6" src="https://code.angularjs.org/1.3.6/angular.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script2.js"></script>
+</head>
+
+<body ng-controller="CntrlGitHub">
+<h1>{{error}}</h1>
+<div>
+<form name="User Search" ng-submit="searchedUser(userName)">
+<fieldset>
+    <legend>User Search</legend>
+  <input type="search" required placeholder="Enter User Name" ng-model="userName">
+  <input type="submit" value="search">
+<select ng-model="orderValue">
+    <option value="+name">Name</option>
+    <option value="-language">Language</option>
+    <option value="-id">ID</option>
+</select>
+    <table border="1" ng-show="userDetails">
+        <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Stars
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="repo in repos">
+            <td>{{repo.name}}</td>
+            <td>{{repo.id | number}}</td>
+            <td>{{repo.language | orderBy:orderValue}}</td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+
+</form>
+</div>
+<div>
+<img src="{{userDetails.avatar_url}}" title="{{userDetails.login}}">
+</div>
+</body>
+
+</html>
